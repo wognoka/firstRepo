@@ -10,16 +10,60 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBAction func changeUILabelButton() {
-        label.text = "UI Label Changed"
+ 
+   
+
+    @IBAction func ClearButton() {
+        Text2.text = ""
     }
+    @IBOutlet weak var alert: UILabel!
+    @IBOutlet weak var Text2: UILabel!
+
+    @IBAction func changeUILabelButton() {
+        //label.text = "UI Label Changed"
+        //print(nameTextInput.text!)
+        func getRandomColor() -> UIColor{
+            //Generate between 0 to 1
+            let red:CGFloat = CGFloat(drand48())
+            let green:CGFloat = CGFloat(drand48())
+            let blue:CGFloat = CGFloat(drand48())
+            
+            return UIColor(red:red, green: green, blue: blue, alpha: 1.0)
+        }
+        
+        if (nameTextInput.text!.characters.count >= 5)
+        {
+            alert.isHidden = true
+            
+            Text2.text = Text2.text! + "\n" + nameTextInput.text!
+            Text2.textColor = getRandomColor()
+            //self.view.backgroundColor = getRandomColor()
+            
+            nameTextInput.text = ""
+
+        }else
+        {
+            alert.isHidden = false
+        }
+        
+        
+        //if label.isHidden == false{
+         //   label.isHidden = true
+        //} else
+       // {
+        //label.isHidden = false
+       // }
+    }
+    
+    @IBOutlet weak var nameTextInput: UITextField!
     
     @IBOutlet weak var label: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        label.text = "New"
+        //label.isHidden = true
+        alert.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
